@@ -11,7 +11,6 @@ export class UsersListComponent implements OnInit {
   constructor(public api: MyServiceService) { }
   getUsers() {
     this.api.getUsers$().subscribe(arg => this.users = arg);
-
   }
   ngOnInit() {
     this.getUsers();

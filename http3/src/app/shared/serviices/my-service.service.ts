@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
-export interface Users {
+export interface User {
   _id: string;
   index: number;
   'guid': string;
@@ -35,11 +35,11 @@ export class MyServiceService {
   constructor(private http: HttpClient) { }
 
   getUsers$() {
-    const arr = this.http.get<Users>('http://localhost:3000/users');
+    const arr = this.http.get<User>('http://localhost:3000/users');
     return arr;
   }
   getUser$(id: string) {
-    const arr = this.http.get<Users>(`http://localhost:3000/users/${id}`);
+    const arr = this.http.get<User>(`http://localhost:3000/users/${id}`);
     return arr;
   }
 }
