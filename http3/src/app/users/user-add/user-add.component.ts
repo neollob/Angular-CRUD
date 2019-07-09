@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { MyServiceService, User } from 'src/app/shared/serviices/my-service.service';
+import { MyServiceService } from 'src/app/shared/serviices/my-service.service';
 import { Router } from '@angular/router';
+import { User } from 'src/app/shared/interfaces/user.model';
 
 @Component({
   selector: 'app-user-add',
@@ -8,30 +9,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./user-add.component.scss']
 })
 export class UserAddComponent implements OnInit {
-  public user: User = {
-    _id: '',
-    id: -1,
-    guid: '',
-    isActive: undefined,
-    balance: '',
-    picture: '',
-    age: -1,
-    eyeColor: '',
-    name: {
-      first: '',
-      last: ''
-    },
-    gender: '',
-    company: '',
-    email: '',
-    phone: '',
-    address: '',
-    about: '',
-    registered: '',
-    latitude: 0,
-    longitude: 0,
-    greeting: ''
-  };
+  public user: User = this.api.initUser();
   constructor(private api: MyServiceService, private router: Router) { }
   public users: any = {};
   addUser() {

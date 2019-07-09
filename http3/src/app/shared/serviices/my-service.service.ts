@@ -1,30 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-
-export interface User {
-  _id: string;
-  id: number;
-  guid: string;
-  isActive: boolean;
-  balance: string;
-  picture: string;
-  age: number;
-  eyeColor: string;
-  name: {
-    first: string,
-    last: string
-  };
-  gender: string;
-  company: string;
-  email: string;
-  phone: string;
-  address: string;
-  about: string;
-  registered: string;
-  latitude: number;
-  longitude: number;
-  greeting: string;
-}
+import { User } from '../interfaces/user.model';
 
 @Injectable({
   providedIn: 'root'
@@ -33,6 +9,33 @@ export class MyServiceService {
 
   constructor(private http: HttpClient) { }
 
+  initUser() {
+    const user: User = {
+      _id: '',
+      id: -1,
+      guid: '',
+      isActive: undefined,
+      balance: '',
+      picture: '',
+      age: -1,
+      eyeColor: '',
+      name: {
+        first: '',
+        last: ''
+      },
+      gender: '',
+      company: '',
+      email: '',
+      phone: '',
+      address: '',
+      about: '',
+      registered: '',
+      latitude: 0,
+      longitude: 0,
+      greeting: ''
+    };
+    return user;
+  }
   getUsers$() {
     const users = this.http.get<User>('http://localhost:3000/users');
     return users;
