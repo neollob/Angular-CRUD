@@ -1,0 +1,9 @@
+<p>users-list works!</p>
+
+<ul>
+  <li *ngFor='let user of users'>
+    <a [routerLink]="['/users',user.id]">
+      {{user.name.first}} {{user.name.last}}
+    </a>
+  </li>
+</ul>
