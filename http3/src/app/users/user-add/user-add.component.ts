@@ -1,14 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { MyServiceService, User } from 'src/app/shared/serviices/my-service.service';
-import { ActivatedRoute } from '@angular/router';
 
 @Component({
-  selector: 'app-user-detail',
-  templateUrl: './user-detail.component.html',
-  styleUrls: ['./user-detail.component.scss']
+  selector: 'app-user-add',
+  templateUrl: './user-add.component.html',
+  styleUrls: ['./user-add.component.scss']
 })
-export class UserDetailComponent implements OnInit {
-  identifier: any;
+export class UserAddComponent implements OnInit {
   public user: User = {
     _id: '',
     id: -1,
@@ -33,14 +31,21 @@ export class UserDetailComponent implements OnInit {
     longitude: 0,
     greeting: ''
   };
-  constructor(public api: MyServiceService, public route: ActivatedRoute) { }
-
-  getUser() {
-    this.identifier = this.route.snapshot.params.id;
-    this.api.getUser$(this.identifier).subscribe(us => this.user = us);
+  constructor(private api: MyServiceService) { }
+  public users: any = {};
+  addUser() {
+    console.log('adding');
+    this.api.getUsers$().subscribe(arg => {
+      this.users = arg;
+      this.user.id = this.users.length;
+      this.api.addUser$(this.user)
+        .subscribe(
+          res => { console.log(res); },
+          err => { console.log(`Error occured`); }
+        );
+    });
   }
   ngOnInit() {
-    this.getUser();
   }
 
 }

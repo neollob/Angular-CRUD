@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 
 export interface User {
   _id: string;
-  index: number;
+  id: number;
   'guid': string;
   'isActive': boolean;
   'balance': string;
@@ -24,7 +24,6 @@ export interface User {
   'latitude': number;
   'longitude': number;
   'greeting': string;
-
 }
 
 @Injectable({
@@ -35,11 +34,14 @@ export class MyServiceService {
   constructor(private http: HttpClient) { }
 
   getUsers$() {
-    const arr = this.http.get<User>('http://localhost:3000/users');
-    return arr;
+    const users = this.http.get<User>('http://localhost:3000/users');
+    return users;
   }
   getUser$(id: string) {
-    const arr = this.http.get<User>(`http://localhost:3000/users/${id}`);
-    return arr;
+    const user = this.http.get<User>(`http://localhost:3000/users/${id}`);
+    return user;
+  }
+  addUser$(user: User) {
+    return this.http.post<User>('http://localhost:3000/users', user);
   }
 }
