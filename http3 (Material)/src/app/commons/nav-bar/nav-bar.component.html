@@ -1,0 +1,47 @@
+<mat-toolbar color="primary">
+  <div fxHide.gt-xs>
+      <button mat-icon-button (click)="onToggleSidenav()">
+          <mat-icon>menu</mat-icon>
+      </button>
+  </div>
+  <div>
+      <a routerLink="/home">Home</a>
+  </div>
+  <div fxFlex fxLayout fxLayoutAlign="end" fxHide.xs>
+      <ul fxLayout fxLayoutGap="15px" class="navigation-items">
+          <li>
+              <a routerLink="/users">Users</a>
+          </li>
+          <li>
+              <a routerLink="/suppliers">Suppliers</a>
+          </li>
+      </ul>
+  </div>
+</mat-toolbar>
+
+<!--
+<mat-toolbar color="primary">
+    <div fxHide.gt-xs>
+      <button mat-icon-button [matMenuTriggerFor]="appMenu">
+          <mat-icon>menu</mat-icon>
+      </button>
+<ul>
+  <li><a routerLink="/home">Home</a></li>
+  <li><a routerLink='/users'>Users</a></li>
+</ul>
+    </div>
+
+    </mat-toolbar>
+<p>nav-bar works!</p>
+
+<mat-menu #appMenu="matMenu">
+    <button mat-menu-item routerLink="/home">Home</button>
+    <button mat-menu-item routerLink='/users'>Users</button>
+  </mat-menu>
+
+  <button mat-icon-button [matMenuTriggerFor]="appMenu">
+    <mat-icon>more_vert</mat-icon>
+  </button>
+-->
+
+

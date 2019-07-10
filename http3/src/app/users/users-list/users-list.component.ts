@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { MyServiceService } from 'src/app/shared/serviices/my-service.service';
+import { ApiService } from 'src/app/shared/services/api.service';
 
 @Component({
   selector: 'app-users-list',
@@ -9,7 +9,7 @@ import { MyServiceService } from 'src/app/shared/serviices/my-service.service';
 export class UsersListComponent implements OnInit {
   public users: any;
   public data: any;
-  constructor(public api: MyServiceService) { }
+  constructor(public api: ApiService) { }
   getUsers() {
     this.api.getUsers$().subscribe(arg => this.users = arg);
   }

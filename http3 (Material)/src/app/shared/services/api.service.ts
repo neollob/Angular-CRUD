@@ -7,7 +7,7 @@ import { tap, catchError } from 'rxjs/operators';
 @Injectable({
   providedIn: 'root'
 })
-export class MyServiceService {
+export class ApiService {
 
   constructor(private http: HttpClient) { }
 

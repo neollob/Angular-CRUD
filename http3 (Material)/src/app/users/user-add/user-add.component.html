@@ -1,0 +1,10 @@
+<p>user-add works!</p>
+<div>
+  <label for="firstName">First Name</label>
+  <input id="firstName" type="text" [(ngModel)]="userData.name.first" #firstName="ngModel">
+</div>
+<div>
+  <label for="lastName">Last Name</label>
+  <input id="lastName" type="text" [(ngModel)]="userData.name.last" #lastName="ngModel">
+</div>
+<button (click)='addUser()'>Add</button>
