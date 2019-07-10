@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { User } from '../interfaces/user.model';
+import { throwError } from 'rxjs';
+import { tap, catchError } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -45,6 +47,22 @@ export class MyServiceService {
     return user;
   }
   addUser$(user: User) {
-    return this.http.post<User>('http://localhost:3000/users', user);
+    return this.http.post<User>('http://localhost:3000/users', user)
+      .pipe(tap((user: User) => console.log(`added User: id=${user.id}`)),
+        catchError(err => {
+          console.log(err);
+          return throwError(err);
+        }));
+  }
+  deleteUser$(id: number){
+    return this.http.delete(`http://localhost:3000/users/${id}`);
+  }
+  editUser$(user: User){
+    return this.http.put<User>('http://localhost:3000/users', user)
+      .pipe(tap((user: User) => console.log(`edited User: id=${user.id}`)),
+        catchError(err => {
+          console.log(err);
+          return throwError(err);
+        }));
   }
 }
