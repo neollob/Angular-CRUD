@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ApiService } from 'src/app/shared/services/api.service';
 import { MatTableDataSource, MatSort, MatPaginator } from '@angular/material';
+import { User } from 'src/app/shared/interfaces/user.model';
 
 @Component({
   selector: 'app-users-list',
@@ -14,7 +15,7 @@ export class UsersListComponent implements OnInit {
   public data: any;
    dataSource = new MatTableDataSource(this.users);
 
-  displayedColumns: string[] = ['_id', 'id', 'firstName', 'lastName', 'eMail','age'];
+  displayedColumns: string[] = ['_id', 'id', 'name.first', 'name.last', 'email', 'age'];
 
   constructor(public api: ApiService) { }
 
@@ -24,6 +25,13 @@ export class UsersListComponent implements OnInit {
       this.dataSource = new MatTableDataSource(this.users);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
+      this.dataSource.sortingDataAccessor = (item: User, property) => {
+        switch (property) {
+          case 'name.first': return item.name.first;
+          case 'name.last': return item.name.last;
+          default: return item[property];
+        }
+      };
     });
   }
   deleteUser(id: string) {

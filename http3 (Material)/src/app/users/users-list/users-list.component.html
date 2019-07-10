@@ -8,29 +8,31 @@
     <!-- _Id Column -->
     <ng-container matColumnDef="_id">
       <th mat-header-cell *matHeaderCellDef mat-sort-header> Id </th>
-      <td mat-cell *matCellDef="let user"> {{user._id}} </td>
+      <td mat-cell *matCellDef="let user"> <a [routerLink]="['/users',user.id]">{{user._id}}</a>  </td>
     </ng-container>
 
     <!-- Id Column -->
     <ng-container matColumnDef="id">
       <th mat-header-cell *matHeaderCellDef mat-sort-header> No. </th>
-      <td mat-cell *matCellDef="let user"> {{user.id}} </td>
+      <td mat-cell *matCellDef="let user"> <a [routerLink]="['/users',user.id]">{{user.id}}</a> </td>
     </ng-container>
 
     <!-- First name Column -->
-    <ng-container matColumnDef="firstName">
+    <ng-container matColumnDef="name.first">
       <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
-      <td mat-cell *matCellDef="let user"> {{user.name.first}} {{user.name.last}} </td>
+      <td mat-cell *matCellDef="let user"> <a [routerLink]="['/users',user.id]">
+        {{user.name.first}} {{user.name.last}}
+      </a> </td>
     </ng-container>
 
     <!-- Last name Column -->
-    <ng-container matColumnDef="lastName">
+    <ng-container matColumnDef='name.last'>
       <th mat-header-cell *matHeaderCellDef mat-sort-header> Last Name </th>
       <td mat-cell *matCellDef="let user"> {{user.name.last}} </td>
     </ng-container>
 
     <!-- eMail Column -->
-    <ng-container matColumnDef="eMail">
+    <ng-container matColumnDef="email">
       <th mat-header-cell *matHeaderCellDef mat-sort-header> e-Mail </th>
       <td mat-cell *matCellDef="let user"> {{user.email}} </td>
     </ng-container>
