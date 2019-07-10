@@ -1,14 +1,17 @@
 <div class="course">
 
   <div class="spinner-container" *ngIf="users.loading$ | async">
-      <mat-spinner></mat-spinner>
+    <mat-spinner></mat-spinner>
   </div>
+  <mat-form-field>
+    <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+  </mat-form-field>
   <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
 
     <!-- _Id Column -->
     <ng-container matColumnDef="_id">
       <th mat-header-cell *matHeaderCellDef mat-sort-header> Id </th>
-      <td mat-cell *matCellDef="let user"> <a [routerLink]="['/users',user.id]">{{user._id}}</a>  </td>
+      <td mat-cell *matCellDef="let user"> <a [routerLink]="['/users',user.id]">{{user._id}}</a> </td>
     </ng-container>
 
     <!-- Id Column -->
@@ -17,12 +20,12 @@
       <td mat-cell *matCellDef="let user"> <a [routerLink]="['/users',user.id]">{{user.id}}</a> </td>
     </ng-container>
 
-    <!-- First name Column -->
+    <!-- Name Column -->
     <ng-container matColumnDef="name.first">
       <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
       <td mat-cell *matCellDef="let user"> <a [routerLink]="['/users',user.id]">
-        {{user.name.first}} {{user.name.last}}
-      </a> </td>
+          {{user.name.first}} {{user.name.last}}
+        </a> </td>
     </ng-container>
 
     <!-- Last name Column -->
